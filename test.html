@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <form action="http://127.0.0.1:8081/process_post" method="POST">
+      First Name: <input type="text" name="first_name" /> <br />
+
+      Last Name: <input type="text" name="last_name" />
+
+      File Select:
+      <input id="fielinput" type="file" onchange="imgChange(event)" name="tx" accept="image/*" />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      var tk = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlciI6ImdyIiwibmFtZSI6IuWFs-WwlOWFiOeUnyIsImlhdCI6MTY0MjQ5OTM2MywiZXhwIjoxNjQyNTAyOTYzfQ.C26oGTHUPq6kWpC4Jr3nIzlcfHi-8k5yo7kn8MrFfiQ
+`;
+      $(document).ready(function () {
+        console.log('设置 ajxSetup');
+        $.ajaxSetup({
+          async: true,
+          processData: false,
+          beforeSend: function (xhr, options) {
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('Authorization', 'Bearer ' + tk);
+            if (options.type == 'POST' && options.data) {
+              console.log(options.data);
+              options.data = JSON.stringify(options.data);
+            }
+          },
+          complete: function (XMLHttpRequest, status) {
+            console.log('complete', XMLHttpRequest.responseJSON);
+          },
+        });
+        /******************************** */
+        $('#section1').height($(window).height() * 2);
+        $('form#formForSearch').on('submit', function (e) {
+          e.preventDefault();
+          searchByWord();
+        });
+        $('form#login-form').on('submit', function (e) {
+          e.preventDefault();
+          // logoutApi(loginIn);
+          loginIn();
+        });
+      });
+
+      function imgChange(e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+          console.log(this.result);
+
+          var picData = {
+            alt: '66',
+            group: '77',
+            url: [this.result],
+          };
+          console.log(picData);
+          $.ajax({
+            type: 'POST',
+            url: '/api/pic/add',
+            data: picData,
+            success: function (e) {
+              console.log(e);
+            },
+            error: function (e) {
+              console.log(e);
+            },
+          });
+        };
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "node",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "config-lite": "^3.0.0",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.3",
+    "images": "^3.2.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "set NODE_ENV=dev&&hotnode index.js",
+    "pro": "set NODE_ENV=pro&&node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "no"
+  },
+  "keywords": [
+    "no"
+  ],
+  "author": "ZhengXinquan",
+  "license": "ISC"
+}

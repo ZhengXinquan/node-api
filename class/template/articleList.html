@@ -1,0 +1,105 @@
+<!-- NSQ_LIST_HTML -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>文章-关尔先生</title>
+    <meta name="keywords" content="文章,我们的故事,关尔先生,沙拉小姐" />
+    <meta name="description" content="这是关尔先生的文章列表。世界是意志的表象，表象是人类的虚妄" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/zz_js/index.js"></script>
+    <script src="/zz_js/layer.js"></script>
+    <link rel="stylesheet" href="/zz_css/index.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="row" style="height: auto">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <div class="navbar-header">
+              <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#example-navbar-collapse"
+              >
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li class="active">
+                  <a href="/zz_article/">Article</a>
+                </li>
+                <li>
+                  <a href="/zz_photo/">Photo</a>
+                </li>
+                <li>
+                  <a href="/zz_book/">Book</a>
+                </li>
+                <li>
+                  <a href="/zz_friend/">Friend</a>
+                </li>
+                <li>
+                  <a href="/zz_login/">Login</a>
+                </li>
+              </ul>
+              <form
+                id="formForSearch"
+                class="navbar-form navbar-right form-inline"
+                role="search"
+                action="/zz_article/"
+              >
+                <div class="form-group">
+                  <input
+                    id="wordForSearch"
+                    name="word"
+                    type="text"
+                    required
+                    class="form-control"
+                    placeholder="Search"
+                  />
+                  <button id="searchByWord" class="btn btn-default btn-submit-search">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </nav>
+    <div id="section1" class="container-fluid">
+      <div class="row" style="height: auto">
+        <div class="col-md-1"></div>
+        <div class="col-sm-12 col-md-10 article-list-box">${NSQ_LIST_HTML}</div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      (function () {
+        var word = GetRequest('word');
+        if (word) {
+          searchByWord(word);
+        }
+      })();
+    });
+  </script>
+</html>
